@@ -1,0 +1,7 @@
+discord-py
+twitchio
+requests
+fortnitepy
+python-dotenv
+python-dateutil
+Flask
