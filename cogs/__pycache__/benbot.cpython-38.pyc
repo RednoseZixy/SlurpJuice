@@ -1,0 +1,72 @@
+U
+
+SY_��@s\ddlZddlZddlmZddlmZed�dd�ZGdd�dej�Z	ej
+d	�d
+d�ZdS)�N)�commands)�BytesIO�Zlscs�fdd�tdt��d�D�S)Ncsi|]}�|�|d�qS)��)�.0�irr�(/home/runner/chugsplash-3/cogs/benbot.py�
+<dictcomp>szconvert.<locals>.<dictcomp>r�)�range�lenrrrr	�convertsrc@sxeZdZejd�dd�Ze��dd��Ze��dd��Ze��e	d�d	d
+��Z
+e��dd��Ze��e	d
+�dd��ZdS)�BenBot��botcCs
+||_dS�Nr)�selfrrrr	�__init__szBenBot.__init__c
+�sFt�d�}|jdk�rB|��}|jtjddd�jdd|�dd	��d�d
+d�jdd|�d
+d	��d�d
+d�jddt|�dg���d|�dd	��d�dd�d�IdHd}|�dd	g�D]}|�|�	d�d�d�}q�|jtjdd|�d�d�IdHd}|�dd	g�D]}|�|�	d�d�d�}�q|jtjdd|�d�d�IdHdS)z6
+        Fetch the current BenBot API Status.
+        z!https://benbotfn.tk/api/v1/status�z
+BenBot Status�rich��title�type�Version�`ZcurrentFortniteVersion�UnknownT��name�value�inlinezCDN VersionZcurrentCdnVersionz	Pak CountZmountedPaks�/Z
+totalPakCountF��embedN��
+zMounted Paks�rr�descriptionZallPakFileszAll Paks)
+�requests�get�status_code�json�send�discord�Embed�	add_fieldr
+�split)r�ctx�r�dataZmounted_paks�pakZall_paksrrr	�statussL
+��$������z
+BenBot.statusc�s�t�d���}tj|�dd�dd�jd|�dd�d	�}|�d
+i�D].}|j|�d�d|�d
+i��|d�d
+d�qB|j|d�IdHdS)z-
+        Fetch the current AES Keys.
+        zhttps://benbotfn.tk/api/v1/aes�versionzUnknown Versionrrz**Main Key**ZmainKeyr)rrZdynamicKeysr!r%Frr"N)r)r*r,r.r/r0r1r-)rr2r4r#r5rrr	�aes:s
+�
+��z
+BenBot.aes)�idc	�s�t�d|���}|jdkr8|�d|j�d��IdHdS|��}tj|�d|�d|�dd	��d
+|�dd���d
+�jd|�dd�dd�}t	|�dd	��t
+kr�|jd|d�dd�dd�n|jdddd�|jd|�dd�dd�jddd
+�|�dd��ddd�jdd|�dd�ddd�t	|�dd	��t
+k�r�|d�dd�dk	�r^|j|ddd �|d�d!d�dk	�r�|j
+|dd!d �|j|d"�IdHdS)#z8
+        Show cosmetic info from a cosmetic ID.
+        z(https://benbotfn.tk/api/v1/cosmetics/br/r�```json
+�```Nrrr(r$r&�setText�Not part of any set.r'�Rarity�rarityrTr�series�Series�None�Backend Type�backendType�
+Gameplay Tags�gameplayTagsF�Pathr�path�icons�icon��url�featuredr")r)r*r+r-�textr,r.r/r0r�dict�join�
+set_thumbnail�	set_image)rr2r9r3�cosmeticr#rrr	r9KsP
+
+�
+��
+��	�z	BenBot.idc	�s�tjdt|�d�}|jdkr:|�d|j�d��IdHdS|��}tj|�d|�dd	��d
+|�dd��d
+|�dd���d�j	d|�dd	�dd�}t
+|�dd��tkr�|j	d|d�dd�dd�n|j	dddd�|j	d|�dd	�dd�j	ddd
+�|�dd��ddd�j	dd|�dd	�ddd�t
+|�d d��tk�r�|d �d!d�dk	�rh|j
+|d d!d"�|d �d#d�dk	�r�|j|d d#d"�|j|d$�IdHdS)%z(
+        Search for a cosmetic.
+        z.https://benbotfn.tk/api/v1/cosmetics/br/search��paramsrr:r;Nrr9rrr(r$r&r<r=r'r>r?Trr@rArBrCrDrErFFrGrrHrIrJrKrMr")r)r*rr+r-rNr,r.r/r0rrOrPrQrR)rr2rUr3rSr#rrr	�searchrsV�
+�
+��
+��	�z
+BenBot.search)rHc�stjdtd|gt|��d�}|jdkrF|�d|j�d��IdHdS|j�dd�d	kr�|jtj	t
+|j�|j�d
+d�d�d
+�IdHn�|j�dd�dkr�|jtj	t
+|j�|j�d
+d�d�d
+�IdHnP|j�dd�dkr�|�d|j�d��IdHn"|�d|j�dd��d��IdHdS)z9
+        Extract an asset from Fortnite's files.
+        z&https://benbotfn.tk/api/v1/exportAssetrHrTrr:r;NzContent-Typez	audio/ogg�filenamez	audio.ogg)�fprW)�filez	image/pngz	image.pngzapplication/jsonz```Unknown Content-Type: r)r)r*r�listr+r-rN�headersr.�Filer�content)rr2rHrUr3rrr	�extract�s4�
+�����zBenBot.extractN)
+�__name__�
+__module__�__qualname__r�AutoShardedBotr�commandr6r8�strr9rVr^rrrr	rs
+*
+&
+(r��clientcCs|�t|��dSr)�add_cogrrerrr	�setup�srh)r)r.�discord.extr�iorrZr�Cogrrbrhrrrr	�<module>s3
