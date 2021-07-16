@@ -19,6 +19,6 @@ A Discord & Twitch Bot that pulls information from several APIs and includes a w
 - FortniteAPI.io Documentation can be found [here](https://fortniteapi.io/).
 - If you want to add your own commands, make a new cog inside `cogs/`. The bot automatically reloads as you make changes.
 
-## Join Here for Support and Fun
+## Join Here for Support
 
-<a href="https://discord.gg/N=RFTTQcT"><img src="https://cdn.discordapp.com/attachments/727759243360337921/755850184335818882/artworks-000496005195-8yqry4-t500x500.png" /></a>
+<a href="https://discord.gg/WSSeafmaSQ"><img src="https://cdn.discordapp.com/attachments/727759243360337921/755850184335818882/artworks-000496005195-8yqry4-t500x500.png" /></a>
